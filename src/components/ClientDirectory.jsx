@@ -131,7 +131,7 @@ export default function ClientDirectory({
           </div>
         </div>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '16px' }}>
+        <div className="client-grid">
           {filtered.map((c) => (
             <div key={c._id || c.name} className="glass-panel" style={{ padding: '18px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '14px' }}>
               <div>

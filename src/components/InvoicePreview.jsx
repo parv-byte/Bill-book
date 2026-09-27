@@ -141,6 +141,11 @@ export default function InvoicePreview({ invoice, settings, onEditBill, onToggle
         </div>
       </div>
 
+      {/* Mobile Swipe Hint */}
+      <div className="mobile-scroll-hint">
+        ↔️ Swipe sideways to view the full physical invoice sheet
+      </div>
+
       {/* Bill Sheet Canvas - PURE WHITE BACKGROUND, PURE BLACK TEXT AND BORDERS ONLY */}
       <div className="bill-paper-container" style={{ background: '#e2e5eb' }}>
         <div id="printable-bill" className="physical-invoice-sheet" style={{ background: '#ffffff', color: '#000000', border: '1.5px solid #000000' }}>

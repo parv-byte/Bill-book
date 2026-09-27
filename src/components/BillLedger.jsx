@@ -49,7 +49,7 @@ export default function BillLedger({ invoices, onSelectInvoice, onEditInvoice, o
     <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
       
       {/* KPI Cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
+      <div className="kpi-grid">
         
         <div className="glass-panel" style={{ padding: '18px' }}>
           <div style={{ fontSize: '0.78rem', color: 'var(--cream-dim)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
@@ -182,9 +182,14 @@ export default function BillLedger({ invoices, onSelectInvoice, onEditInvoice, o
 
       </div>
 
+      {/* Mobile Swipe Hint */}
+      <div className="mobile-scroll-hint">
+        ↔️ Swipe sideways to view all invoice records and actions
+      </div>
+
       {/* Invoices Ledger Table */}
-      <div className="glass-panel" style={{ overflowX: 'auto', padding: '8px' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.88rem' }}>
+      <div className="glass-panel table-responsive" style={{ padding: '8px' }}>
+        <table style={{ width: '100%', minWidth: '680px', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.88rem' }}>
           <thead>
             <tr style={{ borderBottom: '1px solid rgba(201, 168, 76, 0.25)', color: 'var(--gold)' }}>
               <th style={{ padding: '12px 14px' }}>Bill #</th>

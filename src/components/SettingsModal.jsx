@@ -91,7 +91,7 @@ export default function SettingsModal({ settings, onSaveSettings }) {
             <span>Service Provider & Header Details</span>
           </h3>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
+          <div className="form-grid-2col">
             <div>
               <label className="input-label">Provider / Firm Name</label>
               <input
@@ -119,7 +119,7 @@ export default function SettingsModal({ settings, onSaveSettings }) {
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
+          <div className="form-grid-2col">
             <div>
               <label className="input-label">PAN Number</label>
               <input
@@ -146,7 +146,7 @@ export default function SettingsModal({ settings, onSaveSettings }) {
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
+          <div className="form-grid-2col">
             <div>
               <label className="input-label">Contact Phone</label>
               <input
@@ -180,7 +180,7 @@ export default function SettingsModal({ settings, onSaveSettings }) {
             <span>Bank Details (As Shown on Invoice Bottom)</span>
           </h3>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
+          <div className="form-grid-2col">
             <div>
               <label className="input-label">A/c Holder Name</label>
               <input
@@ -206,7 +206,7 @@ export default function SettingsModal({ settings, onSaveSettings }) {
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
+          <div className="form-grid-2col">
             <div>
               <label className="input-label">Branch</label>
               <input

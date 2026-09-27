@@ -293,3 +293,145 @@ h1, h2, h3, h4 {
     margin: 10mm;
   }
 }
+
+/* ========================================================
+   RESPONSIVE LAYOUT UTILITIES & MOBILE OPTIMIZATIONS
+   ======================================================== */
+.app-main-container {
+  flex: 1;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 24px 20px;
+}
+
+.main-grid-layout {
+  display: grid;
+  grid-template-columns: minmax(340px, 440px) 1fr;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.form-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.client-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 8px;
+}
+
+.mobile-scroll-hint {
+  display: none;
+  font-size: 0.72rem;
+  color: var(--gold);
+  background: rgba(201, 168, 76, 0.1);
+  border: 1px dashed rgba(201, 168, 76, 0.3);
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+/* TABLETS (< 1024px) */
+@media (max-width: 1024px) {
+  .main-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* MOBILE PHONES (< 768px) */
+@media (max-width: 768px) {
+  .app-main-container {
+    padding: 14px 10px;
+  }
+
+  /* Prevent iOS zoom on input focus by setting 16px font-size */
+  .bpc-input {
+    font-size: 16px !important;
+    padding: 11px 12px;
+  }
+
+  .form-grid-2col {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .client-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .mobile-scroll-hint {
+    display: block;
+  }
+
+  /* Bill paper container touch scrolling */
+  .bill-paper-container {
+    padding: 10px 4px;
+    border-radius: 6px;
+  }
+
+  .physical-invoice-sheet {
+    min-width: 540px;
+    padding: 14px 10px;
+  }
+
+  /* Nav header mobile scrollable tabs */
+  .navbar-tabs-nav {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 4px 2px !important;
+  }
+  .navbar-tabs-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .navbar-tabs-nav button {
+    padding: 7px 12px !important;
+    font-size: 0.78rem !important;
+    flex-shrink: 0;
+  }
+
+  /* Glass panel padding on mobile */
+  .glass-panel {
+    padding: 14px !important;
+  }
+}
+
+/* SMALL PHONES (< 480px) */
+@media (max-width: 480px) {
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-gold, .btn-outline-gold {
+    padding: 10px 14px;
+    font-size: 0.8rem;
+  }
+}
+

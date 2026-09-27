@@ -33,7 +33,7 @@ export default function Navbar({ activeTab, setActiveTab, nextSrNo, totalInvoice
         </div>
 
         {/* Navigation Tabs */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'rgba(6, 14, 33, 0.6)', padding: '4px', borderRadius: '8px', border: '1px solid rgba(201, 168, 76, 0.15)' }}>
+        <nav className="navbar-tabs-nav" style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'rgba(6, 14, 33, 0.6)', padding: '4px', borderRadius: '8px', border: '1px solid rgba(201, 168, 76, 0.15)' }}>
           <button
             onClick={() => setActiveTab('create')}
             style={{

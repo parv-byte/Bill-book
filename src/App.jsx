@@ -529,11 +529,11 @@ export default function App() {
       )}
 
       {/* Main Container */}
-      <main style={{ flex: 1, maxWidth: '1440px', width: '100%', margin: '0 auto', padding: '24px 20px' }}>
+      <main className="app-main-container">
         
         {/* TAB 1: CREATE OR EDIT BILL & LIVE PREVIEW */}
         {activeTab === 'create' && (
-          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(340px, 440px) 1fr', gap: '24px', alignItems: 'flex-start' }}>
+          <div className="main-grid-layout">
             
             {/* Left: Input Form (handles both Create and Edit) */}
             <div>
