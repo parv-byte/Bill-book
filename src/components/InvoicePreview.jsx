@@ -372,12 +372,18 @@ export default function InvoicePreview({ invoice, settings, onEditBill, onToggle
             </div>
 
             {/* Right: Signature */}
-            <div style={{ width: '190px', padding: '8px 12px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textAlign: 'center' }}>
+            <div style={{ width: '190px', padding: '6px 10px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textAlign: 'center' }}>
               <div style={{ fontSize: '11px', fontWeight: 700, color: '#000000' }}>
                 For {providerName}
               </div>
 
-              <div style={{ height: '35px' }}></div>
+              <div style={{ height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '2px 0' }}>
+                <img
+                  src="./signature.png"
+                  alt="BP Consultant Signature"
+                  style={{ maxHeight: '46px', maxWidth: '160px', objectFit: 'contain' }}
+                />
+              </div>
 
               <div style={{ fontSize: '10.5px', fontWeight: 700, color: '#000000', borderTop: '1px solid #000000', paddingTop: '3px' }}>
                 Auth. Signatory
