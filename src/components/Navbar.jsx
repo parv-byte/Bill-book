@@ -1,7 +1,7 @@
 import React from 'react';
-import { Archive, Users, Settings, PlusCircle, ShieldCheck } from 'lucide-react';
+import { Archive, Users, Settings, PlusCircle, ShieldCheck, LogOut } from 'lucide-react';
 
-export default function Navbar({ activeTab, setActiveTab, nextSrNo, totalInvoices }) {
+export default function Navbar({ activeTab, setActiveTab, nextSrNo, totalInvoices, onLogout, currentUser }) {
   return (
     <header className="glass-panel" style={{ borderRadius: 0, borderTop: 'none', borderLeft: 'none', borderRight: 'none', padding: '16px 24px', position: 'sticky', top: 0, zIndex: 100 }}>
       <div style={{ maxWidth: '1440px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
@@ -124,16 +124,46 @@ export default function Navbar({ activeTab, setActiveTab, nextSrNo, totalInvoice
           </button>
         </nav>
 
-        {/* Quick status pill */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        {/* Quick status pill & Logout */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
           <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: '0.72rem', color: 'var(--cream-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            <div style={{ fontSize: '0.70rem', color: 'var(--cream-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
               Next Bill Serial
             </div>
             <div style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--gold-light)', fontFamily: 'var(--font-mono)' }}>
               #{String(nextSrNo || 1).padStart(3, '0')}
             </div>
           </div>
+
+          {onLogout && (
+            <button
+              onClick={onLogout}
+              title="Sign Out (bpc1164@gmail.com)"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '7px 12px',
+                borderRadius: '6px',
+                background: 'rgba(239, 68, 68, 0.12)',
+                border: '1px solid rgba(239, 68, 68, 0.3)',
+                color: '#fca5a5',
+                cursor: 'pointer',
+                fontSize: '0.8rem',
+                fontWeight: 500,
+                transition: 'all 0.2s'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(239, 68, 68, 0.22)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(239, 68, 68, 0.12)';
+              }}
+            >
+              <LogOut size={15} />
+              <span>Sign Out</span>
+            </button>
+          )}
         </div>
 
       </div>

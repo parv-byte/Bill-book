@@ -5,6 +5,7 @@ import InvoicePreview from './components/InvoicePreview';
 import BillLedger from './components/BillLedger';
 import ClientDirectory from './components/ClientDirectory';
 import SettingsModal from './components/SettingsModal';
+import SignIn from './components/SignIn';
 import { CheckCircle2, Download, AlertCircle } from 'lucide-react';
 
 function getTodayString() {
@@ -16,6 +17,32 @@ function getTodayString() {
 }
 
 export default function App() {
+  // Authentication State
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    return localStorage.getItem('bpc_auth') === 'true';
+  });
+  const [currentUser, setCurrentUser] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem('bpc_user')) || null;
+    } catch {
+      return null;
+    }
+  });
+
+  const handleLoginSuccess = (user) => {
+    localStorage.setItem('bpc_auth', 'true');
+    localStorage.setItem('bpc_user', JSON.stringify(user));
+    setIsAuthenticated(true);
+    setCurrentUser(user);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('bpc_auth');
+    localStorage.removeItem('bpc_user');
+    setIsAuthenticated(false);
+    setCurrentUser(null);
+  };
+
   const [activeTab, setActiveTab] = useState('create');
   const [invoices, setInvoices] = useState([]);
   const [clients, setClients] = useState([]);
@@ -439,6 +466,10 @@ export default function App() {
     }
   };
 
+  if (!isAuthenticated) {
+    return <SignIn onLoginSuccess={handleLoginSuccess} />;
+  }
+
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       
@@ -448,6 +479,8 @@ export default function App() {
         setActiveTab={setActiveTab}
         nextSrNo={settings?.nextSrNo || 1}
         totalInvoices={invoices.length}
+        onLogout={handleLogout}
+        currentUser={currentUser}
       />
 
       {/* Floating Notification Toast */}
