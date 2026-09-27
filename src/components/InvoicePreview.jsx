@@ -1,5 +1,6 @@
 import React from 'react';
 import { Printer, Download, Edit3, CheckCircle2, Clock } from 'lucide-react';
+import { API_BASE } from '../config';
 
 export default function InvoicePreview({ invoice, settings, onEditBill, onToggleStatus }) {
   const currentInvoice = invoice || {};
@@ -127,7 +128,7 @@ export default function InvoicePreview({ invoice, settings, onEditBill, onToggle
 
           {currentInvoice._id && (
             <a
-              href={`/api/invoices/${currentInvoice._id}/pdf`}
+              href={`${API_BASE}/api/invoices/${currentInvoice._id}/pdf`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-gold"

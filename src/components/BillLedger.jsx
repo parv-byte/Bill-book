@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Search, Download, Trash2, CheckCircle2, Clock, FileSpreadsheet, AlertCircle, Edit3 } from 'lucide-react';
+import { API_BASE } from '../config';
 
 const MONTH_NAMES = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -105,7 +106,7 @@ export default function BillLedger({ invoices, onSelectInvoice, onEditInvoice, o
             </div>
           </div>
           <a
-            href="/api/invoices/export/csv"
+            href={`${API_BASE}/api/invoices/export/csv`}
             className="btn-outline-gold"
             style={{ fontSize: '0.75rem', padding: '6px 12px', marginTop: '8px', alignSelf: 'flex-start' }}
             download
@@ -261,7 +262,7 @@ export default function BillLedger({ invoices, onSelectInvoice, onEditInvoice, o
                       </button>
 
                       <a
-                        href={`/api/invoices/${inv._id}/pdf`}
+                        href={`${API_BASE}/api/invoices/${inv._id}/pdf`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn-ghost"

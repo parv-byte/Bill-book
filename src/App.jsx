@@ -6,6 +6,7 @@ import BillLedger from './components/BillLedger';
 import ClientDirectory from './components/ClientDirectory';
 import SettingsModal from './components/SettingsModal';
 import SignIn from './components/SignIn';
+import { API_BASE } from './config';
 import { CheckCircle2, Download, AlertCircle } from 'lucide-react';
 
 function getTodayString() {
@@ -76,9 +77,9 @@ export default function App() {
     try {
       setLoading(true);
       const [invRes, clientRes, setRes] = await Promise.all([
-        fetch('/api/invoices'),
-        fetch('/api/clients'),
-        fetch('/api/settings')
+        fetch(`${API_BASE}/api/invoices`),
+        fetch(`${API_BASE}/api/clients`),
+        fetch(`${API_BASE}/api/settings`)
       ]);
 
       const [invData, clientData, setData] = await Promise.all([
@@ -166,7 +167,7 @@ export default function App() {
         otherCharges: Number(form.otherCharges) || 0
       };
 
-      const res = await fetch('/api/invoices', {
+      const res = await fetch(`${API_BASE}/api/invoices`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -200,7 +201,7 @@ export default function App() {
         `Invoice #${paddedSrNo} generated & PDF permanently archived!`,
         'success',
         {
-          pdfUrl: `/api/invoices/${saved._id}/pdf`,
+          pdfUrl: `${API_BASE}/api/invoices/${saved._id}/pdf`,
           srNo: paddedSrNo
         }
       );
@@ -273,7 +274,7 @@ export default function App() {
         ]
       };
 
-      const res = await fetch(`/api/invoices/${editingInvoiceId}`, {
+      const res = await fetch(`${API_BASE}/api/invoices/${editingInvoiceId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -308,7 +309,7 @@ export default function App() {
         `Invoice #${paddedSrNo} updated & PDF regenerated successfully!`,
         'success',
         {
-          pdfUrl: `/api/invoices/${updated._id}/pdf`,
+          pdfUrl: `${API_BASE}/api/invoices/${updated._id}/pdf`,
           srNo: paddedSrNo
         }
       );
@@ -344,7 +345,7 @@ export default function App() {
   const handleToggleStatus = async (inv) => {
     try {
       const newStatus = inv.status === 'Paid' ? 'Pending' : 'Paid';
-      const res = await fetch(`/api/invoices/${inv._id}/status`, {
+      const res = await fetch(`${API_BASE}/api/invoices/${inv._id}/status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus })
@@ -374,7 +375,7 @@ export default function App() {
       return;
     }
     try {
-      const res = await fetch(`/api/invoices/${id}`, { method: 'DELETE' });
+      const res = await fetch(`${API_BASE}/api/invoices/${id}`, { method: 'DELETE' });
       if (res.ok) {
         setInvoices(prev => prev.filter(i => i._id !== id));
         if (editingInvoiceId === id) {
@@ -390,7 +391,7 @@ export default function App() {
   // Handle Update Client
   const handleUpdateClient = async (id, updatedData) => {
     try {
-      const res = await fetch(`/api/clients/${id}`, {
+      const res = await fetch(`${API_BASE}/api/clients/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedData)
@@ -414,7 +415,7 @@ export default function App() {
       return;
     }
     try {
-      const res = await fetch(`/api/clients/${id}`, { method: 'DELETE' });
+      const res = await fetch(`${API_BASE}/api/clients/${id}`, { method: 'DELETE' });
       if (res.ok) {
         setClients(prev => prev.filter(c => c._id !== id));
         showToast('Client removed from directory');
@@ -430,7 +431,7 @@ export default function App() {
   // Handle Add Client
   const handleAddClient = async (clientData) => {
     try {
-      const res = await fetch('/api/clients', {
+      const res = await fetch(`${API_BASE}/api/clients`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(clientData)
@@ -451,7 +452,7 @@ export default function App() {
   // Handle Save Settings
   const handleSaveSettings = async (newSettings) => {
     try {
-      const res = await fetch('/api/settings', {
+      const res = await fetch(`${API_BASE}/api/settings`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newSettings)
