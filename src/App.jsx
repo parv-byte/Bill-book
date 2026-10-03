@@ -7,6 +7,7 @@ import ClientDirectory from './components/ClientDirectory';
 import SettingsModal from './components/SettingsModal';
 import SignIn from './components/SignIn';
 import { API_BASE } from './config';
+import { numberToWords } from './utils/numberToWords';
 import { CheckCircle2, Download, AlertCircle } from 'lucide-react';
 
 function getTodayString() {
@@ -135,7 +136,7 @@ export default function App() {
         totalAmount,
         otherCharges,
         grandTotal,
-        amountInWords: grandTotal > 0 ? `Rupees ${grandTotal.toLocaleString('en-IN')} Only` : 'Rupees Zero Only',
+        amountInWords: numberToWords(grandTotal),
         providerName: settings?.companyName || 'BP CONSULTANT',
         tagline: settings?.tagline || 'HR and Compliance',
         pan: settings?.pan || 'AEYPR8669A',
@@ -159,12 +160,15 @@ export default function App() {
   const handleSaveInvoice = async () => {
     try {
       setIsSaving(true);
+      const amt = Number(form.amount) || 0;
+      const otherChg = Number(form.otherCharges) || 0;
       const payload = {
         ...form,
         srNo: form.srNo || settings?.nextSrNo || 1,
-        amount: Number(form.amount) || 0,
+        amount: amt,
         expense: Number(form.expense) || 0,
-        otherCharges: Number(form.otherCharges) || 0
+        otherCharges: otherChg,
+        amountInWords: numberToWords(amt + otherChg)
       };
 
       const res = await fetch(`${API_BASE}/api/invoices`, {
@@ -257,11 +261,14 @@ export default function App() {
     if (!editingInvoiceId) return;
     try {
       setIsSaving(true);
+      const amt = Number(form.amount) || 0;
+      const otherChg = Number(form.otherCharges) || 0;
       const payload = {
         ...form,
-        amount: Number(form.amount) || 0,
+        amount: amt,
         expense: Number(form.expense) || 0,
-        otherCharges: Number(form.otherCharges) || 0,
+        otherCharges: otherChg,
+        amountInWords: numberToWords(amt + otherChg),
         items: [
           {
             srNo: 1,

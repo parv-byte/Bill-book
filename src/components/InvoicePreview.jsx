@@ -1,6 +1,7 @@
 import React from 'react';
 import { Printer, Download, Edit3, CheckCircle2, Clock } from 'lucide-react';
 import { API_BASE } from '../config';
+import { numberToWords } from '../utils/numberToWords';
 
 export default function InvoicePreview({ invoice, settings, onEditBill, onToggleStatus }) {
   const currentInvoice = invoice || {};
@@ -33,7 +34,9 @@ export default function InvoicePreview({ invoice, settings, onEditBill, onToggle
     ? Number(currentInvoice.grandTotal)
     : (totalAmount + otherCharges);
 
-  const amountInWords = currentInvoice.amountInWords || 'Rupees Only';
+  const amountInWords = (currentInvoice.amountInWords && !/\d/.test(currentInvoice.amountInWords))
+    ? currentInvoice.amountInWords
+    : numberToWords(grandTotal);
 
   const bank = currentInvoice.bankDetails || currentSettings.bankDetails || {
     accountName: 'BP CONSULTANT',
